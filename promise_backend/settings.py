@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'users',
+    'commerce',
     # 3rd party
     'graphene_django',
 ]
