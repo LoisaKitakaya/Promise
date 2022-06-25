@@ -1,7 +1,8 @@
 import graphene
-from graphene_django import DjangoObjectType
+import graphql_jwt
 from users.models import User
 import commerce.schema as commerce_schema
+from graphene_django import DjangoObjectType
 
 class UserType(DjangoObjectType):
 
@@ -41,6 +42,14 @@ class UserMutation(graphene.Mutation):
 class Mutation(graphene.ObjectType):
 
     create_user = UserMutation.Field()
+
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+
+    verify_token = graphql_jwt.Verify.Field()
+
+    refresh_token = graphql_jwt.Refresh.Field()
+
+    revoke_token = graphql_jwt.Revoke.Field()
 
 class Query(commerce_schema.Query, graphene.ObjectType):
 
