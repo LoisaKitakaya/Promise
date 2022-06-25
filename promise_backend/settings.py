@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+# force_text is removed from Django 4.0
+# to fix force_text import error
+
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'users',
+    # 3rd party
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # custom user model
 
 AUTH_USER_MODEL = 'users.User'
+
+# Graphene and graphql-jwt
+
+GRAPHENE = {
+    "SCHEMA": "promise_backend.schema.schema",
+}
