@@ -21,15 +21,21 @@ class ProductAdminView(admin.ModelAdmin):
         'size_varience',
     )
 
+    prepopulated_fields = {"slug": ("name",)}
+
 @admin.register(Category)
 class CategoryAdminView(admin.ModelAdmin):
 
     model = Category
 
+    prepopulated_fields = {"slug": ("name",)}
+
 @admin.register(Collection)
 class CollectionAdminView(admin.ModelAdmin):
 
     model = Collection
+
+    prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Currency)
 class CurrencyAdminView(admin.ModelAdmin):

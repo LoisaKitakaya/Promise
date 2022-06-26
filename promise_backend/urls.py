@@ -22,3 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
+
+admin.site.site_header = 'Admin Panel'
+admin.site.site_title = 'Headless CMS - API Backend'

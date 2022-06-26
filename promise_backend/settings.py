@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'users',
-    'commerce',
+    'products',
     # 3rd party
     'graphene_django',
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",

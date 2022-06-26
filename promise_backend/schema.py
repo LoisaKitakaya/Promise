@@ -1,6 +1,6 @@
 import graphene
 import graphql_jwt
-import commerce.schema as commerce_schema
+import products.schema as products_schema
 
 class Mutation(graphene.ObjectType):
 
@@ -12,7 +12,7 @@ class Mutation(graphene.ObjectType):
 
     revoke_token = graphql_jwt.Revoke.Field()
 
-class Query(commerce_schema.Query, graphene.ObjectType):
+class Query(products_schema.Query, graphene.ObjectType):
 
     pass
 
