@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Collection, ColorVarient, Currency, SizeVarient
+from .models import Product, Category, Collection, Currency
 
 # Register your models here.
 @admin.register(Product)
@@ -17,8 +17,6 @@ class ProductAdminView(admin.ModelAdmin):
     list_filter = (
         'category',
         'collection',
-        'color_varience',
-        'size_varience',
     )
 
     prepopulated_fields = {"slug": ("name",)}
@@ -41,13 +39,3 @@ class CollectionAdminView(admin.ModelAdmin):
 class CurrencyAdminView(admin.ModelAdmin):
 
     model = Currency
-
-@admin.register(ColorVarient)
-class ColorVarientAdminView(admin.ModelAdmin):
-
-    model = ColorVarient
-
-@admin.register(SizeVarient)
-class SizeVarientAdminView(admin.ModelAdmin):
-
-    model = SizeVarient

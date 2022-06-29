@@ -31,24 +31,6 @@ class Collection(models.Model):
         
         return self.name
 
-class ColorVarient(models.Model):
-
-    name = models.CharField(blank=False, max_length=200, unique=True)
-    color = models.CharField(blank=False, max_length=200, unique=True)
-
-    def __str__(self) -> str:
-        
-        return self.color
-
-class SizeVarient(models.Model):
-
-    name = models.CharField(blank=False, max_length=200)
-    size = models.CharField(blank=False, max_length=200, unique=True)
-
-    def __str__(self) -> str:
-        
-        return self.size
-
 class Product(models.Model):
 
     name = models.CharField(blank=False, max_length=200, unique=True)
@@ -58,8 +40,6 @@ class Product(models.Model):
     image = models.URLField(blank=False, max_length=254)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
-    color_varience = models.ManyToManyField(ColorVarient)
-    size_varience = models.ManyToManyField(SizeVarient)
 
     def __str__(self) -> str:
         
