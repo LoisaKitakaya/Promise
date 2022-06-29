@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # my apps
     'users',
     'products',
+    'orders',
     # 3rd party
     'graphene_django',
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
