@@ -10,6 +10,7 @@ class ProductAdminView(admin.ModelAdmin):
     list_display = (
         'first_name',
         'email',
+        'sub_total',
     )
 
     list_filter = (

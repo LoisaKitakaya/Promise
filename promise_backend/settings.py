@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'users',
     'products',
     'orders',
+    'user_reviews',
     # 3rd party
     'graphene_django',
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",

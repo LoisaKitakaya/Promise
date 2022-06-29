@@ -1,5 +1,4 @@
 from django.db import models
-from products.models import Product
 
 # Create your models here.
 class Order(models.Model):
@@ -11,7 +10,7 @@ class Order(models.Model):
     city = models.CharField(max_length=100)
     place = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    paid_amount = models.DecimalField(max_digits=8, decimal_places=2)
+    sub_total = models.CharField(blank=False, max_length=200)
 
     class Meta:
         ordering = ['-created_at']
@@ -21,12 +20,9 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    quantity = models.IntegerField(default=1)
+    product = models.CharField(blank=False, max_length=200)
+    quantity = models.CharField(blank=False, max_length=200)
+    total = models.CharField(blank=False, max_length=200)
     
     def __str__(self):
-        return '%s' % self.id
-    
-    def get_total_price(self):
-        return self.price * self.quantity
+        return self.product
