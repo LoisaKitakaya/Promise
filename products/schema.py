@@ -1,6 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
-from .models import Product, Category, Collection, Currency, ColorVarient, SizeVarient
+from .models import Product, Category, Collection, Currency
 
 class ProductType(DjangoObjectType):
 
@@ -31,22 +31,6 @@ class CurrencyType(DjangoObjectType):
     class Meta:
 
         model = Currency
-
-        fields = '__all__'
-
-class ColorVarientType(DjangoObjectType):
-
-    class Meta:
-
-        model = ColorVarient
-
-        fields = '__all__'
-
-class SizeVarientType(DjangoObjectType):
-
-    class Meta:
-
-        model = SizeVarient
 
         fields = '__all__'
 
