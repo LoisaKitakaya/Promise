@@ -2,17 +2,49 @@ import graphene
 import graphql_jwt
 import products.schema as products_schema
 
-class Mutation(graphene.ObjectType):
+from graphql_auth.schema import UserQuery, MeQuery
+from graphql_auth import mutations
 
-    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+class AuthMutation(graphene.ObjectType):
 
-    verify_token = graphql_jwt.Verify.Field()
+    register = mutations.Register.Field()
 
-    refresh_token = graphql_jwt.Refresh.Field()
+    verify_account = mutations.VerifyAccount.Field()
 
-    revoke_token = graphql_jwt.Revoke.Field()
+    resend_activation_email = mutations.ResendActivationEmail.Field()
 
-class Query(products_schema.Query, graphene.ObjectType):
+    send_password_reset_email = mutations.SendPasswordResetEmail.Field()
+
+    password_reset = mutations.PasswordReset.Field()
+
+    password_change = mutations.PasswordChange.Field()
+
+    archive_account = mutations.ArchiveAccount.Field()
+
+    delete_account = mutations.DeleteAccount.Field()
+
+    update_account = mutations.UpdateAccount.Field()
+
+    send_secondary_email_activation = mutations.SendSecondaryEmailActivation.Field()
+
+    verify_secondary_email = mutations.VerifySecondaryEmail.Field()
+
+    swap_emails = mutations.SwapEmails.Field()
+
+    # django-graphql-jwt inheritances
+    token_auth = mutations.ObtainJSONWebToken.Field()
+
+    verify_token = mutations.VerifyToken.Field()
+
+    refresh_token = mutations.RefreshToken.Field()
+
+    revoke_token = mutations.RevokeToken.Field()
+
+class Mutation(AuthMutation, graphene.ObjectType):
+
+    pass
+
+class Query(products_schema.Query, UserQuery, MeQuery, graphene.ObjectType):
 
     pass
 

@@ -42,32 +42,20 @@ class Query(graphene.ObjectType):
 
     all_collections = graphene.List(CollectionType)
 
+    single_product = graphene.Field(ProductType, slug=graphene.String(required=True))
+
     def resolve_all_products(root, info):
-
-        user = info.context.user
-
-        if not user.is_authenticated:
-            
-            raise Exception("Authentication credentials were not provided")
 
         return Product.objects.all()
 
     def resolve_all_categories(root, info):
 
-        user = info.context.user
-
-        if not user.is_authenticated:
-
-            raise Exception('Authentication credentials were not provided')
-
         return Category.objects.all()
 
     def resolve_all_collections(root, info):
 
-        user = info.context.user
-
-        if not user.is_authenticated:
-
-            raise Exception('Authentication credentials were not provided')
-
         return Collection.objects.all()
+
+    def resolve_single_product(root, info, slug):
+
+        return Product.objects.get(slug=slug)   
